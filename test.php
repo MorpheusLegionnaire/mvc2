@@ -1,9 +1,43 @@
 <?php
 
 
+interface RemoteInterface
+{
+    public function on();
+    public function off();
+}
 
+class TVRemote implements RemoteInterface
+{
+    public function on()
+    {
+        // TODO: Implement on() method.
+    }
 
-echo 1;
+    public function off()
+    {
+        // TODO: Implement off() method.
+    }
+
+}
+
+class ConditionerRemote implements RemoteInterface
+{
+    public function on()
+    {
+        // TODO: Implement on() method.
+    }
+
+    public function off()
+    {
+        // TODO: Implement off() method.
+    }
+}
+
+function useRemote(RemoteInterface $remote)
+{
+
+}
 
 
 

@@ -16,5 +16,26 @@ class BookController extends Controller
         return $this->render('index', array('books' => $books));
     }
 
+    public function showAction(Request $request)
+    {
+        $id = $request->get('id');
+
+        $bookModel = new BookModel();
+
+        // как вариант
+        try {
+            $book = $bookModel->find($id);
+        } catch (NotFoundException $e) {
+            Router::redirect('/');
+        }
+
+
+        $args = array(
+            'book' => $book
+        );
+
+        return $this->render('show', $args);
+    }
+
 
 }
