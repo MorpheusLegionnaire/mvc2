@@ -10,40 +10,33 @@ class BookModel
 {
     public function findAll()
     {
-        return $books = array(
-            array(
-                'title' => 'rtert',
-                'price' => 6456,
-                'author' => 'dfg'
-            ),
-            array(
-                'title' => 'hjkhjk',
-                'price' => 2131,
-                'author' => 'zxzc'
-            )
-        );
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->query('SELECT * FROM book');
+        $sth->execute();
+        $books = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$books) {
+            throw new NotFoundException('No books found :(');
+        }
+
+        return $books;
     }
 
     public function find($id)
     {
-        $books = array(
-            array(
-                'title' => 'rtert',
-                'price' => 6456,
-                'author' => 'dfg'
-            ),
-            array(
-                'title' => 'hjkhjk',
-                'price' => 2131,
-                'author' => 'zxzc'
-            )
-        );
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare("SELECT * FROM book WHERE id = :book_id");
+        $sth->execute(array(
+            'book_id' => $id
+        ));
+
+        $book = $sth->fetch(PDO::FETCH_ASSOC);
         
-        if (!isset($books[$id])) {
+        if (!$book) {
             throw new NotFoundException("Book #{$id} not found", 404);
         }
         
-        return $books[$id];
+        return $book;
         
         
     }

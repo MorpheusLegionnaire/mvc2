@@ -21,7 +21,10 @@ class IndexController extends Controller
 
         if ($request->isPost()) {
             if ($form->isValid()) {
-                // bla-bla
+                $model = new FeedbackModel();
+                $model->save(array(
+                    // TODO + DateTime
+                ));
 
                 Router::redirect('/index.php?route=index/contact&flash_msg=valid');
             }

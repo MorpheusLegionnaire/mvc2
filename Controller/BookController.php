@@ -18,8 +18,7 @@ class BookController extends Controller
 
     public function showAction(Request $request)
     {
-        $id = $request->get('id');
-
+        $id = $request->get('id'); // $_GET['id']
         $bookModel = new BookModel();
 
         // как вариант
