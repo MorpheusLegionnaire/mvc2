@@ -17,7 +17,7 @@ class IndexController extends Controller
     public function contactAction(Request $request)
     {
         $form = new Form($request);
-        $msg = $request->get('flash_msg'); // $_GET['username']
+        //$msg = $request->get('flash_msg'); // $_GET['username']
 
         if ($request->isPost()) {
             if ($form->isValid()) {
@@ -31,18 +31,28 @@ class IndexController extends Controller
                     'created' => $datetime->format('Y-m-d H:i:s')
                 ));
 
-                Router::redirect('/index.php?route=index/contact&flash_msg=Message sent');
+                Session::setFlash('Message sent');
+                Router::redirect('/index.php?route=index/contact');
             }
 
-            $msg = 'Invalid';
+            Session::setFlash('Fill the fields');
         }
 
         $args = array(
             'form' => $form,
-            'msg' => $msg
         );
 
         return $this->render('contact', $args);
+    }
+
+    public function userAction(Request $request)
+    {
+        if (!Session::has('user')) {
+            Router::redirect('/');
+        }
+
+        //
+        //
     }
 
 }

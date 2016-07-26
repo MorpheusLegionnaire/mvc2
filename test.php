@@ -1,5 +1,51 @@
 <?php
 
+// '.'   ----  'a', '5', 'd', '.'
+// '[abc123]'  ---- 'a', 'b', 'c', '1','2', '3'
+// '[a-zA-Z]' ---  'a', 'G'
+// 'a?' --- 'a', ''
+// '[a-z0-9A-Z]*' --- 'hel32lo', 'by', 'sdFFE343gdrgrt', ''
+// '[a-z0-9A-Z]+' --- 'hel32lo', 'by', 'sdFFE343gdrgrt'
+// '[a-z]{,10}'
+
+// '^hello'  ---  'hello world', 'hello/', 'hello', 'hello123', !'werhello'
+// 'bla$' -- 'sdfdf bla', 'bla bla', 'blah'
+
+// book-123.50.html       book-([0-9]+)\.([0-9]+)\.html
+
+
+
+echo md5('pass' . md5('salt'));
+
+session_start();
+
+
+$_SESSION['bla'] = array(12,3,false, 'sdfdsf');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 interface RemoteInterface
 {

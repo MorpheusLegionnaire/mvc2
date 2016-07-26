@@ -1,6 +1,6 @@
 <?php
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', __DIR__ . DS);
+define('ROOT', __DIR__ . DS . '..' . DS);
 define('VIEW_DIR', ROOT . 'View' . DS);
 define('CONTROLLER_DIR', ROOT . 'Controller' . DS);
 define('MODEL_DIR', ROOT . 'Model' . DS);
@@ -23,7 +23,7 @@ function __autoload($className) // 'Car.php'
 }
 
 try {
-
+    Session::start();
     $request = new Request();
     $route = $request->get('route'); // $_GET['route']
 

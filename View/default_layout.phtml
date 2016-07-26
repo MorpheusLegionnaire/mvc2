@@ -7,10 +7,16 @@
 <body>
 
 <a href="/">Home</a>
-<a href="/index.php?route=book/index">Books</a>
-<a href="/index.php?route=index/contact">Contact</a>
+<a href="/webroot/index.php?route=book/index">Books</a>
+<a href="/webroot/index.php?route=index/contact">Contact</a>
 |
-<a href="/index.php?route=security/login">Login</a>
+
+<?php if (Session::has('user')):?>
+    <a href="/webroot/index.php?route=security/logout">Logout</a> (<?=Session::get('user')?>)
+<?php else: ?>
+    <a href="/webroot/index.php?route=security/login">Login</a>
+<?php endif;?>
+
 
 <hr>
 <?=$content?>
@@ -20,6 +26,6 @@
 <br>
 <br>
 <hr>
-footer &copy;
+footer &copy;<?=date('Y');?>
 </body>
 </html>
