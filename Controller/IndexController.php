@@ -22,11 +22,16 @@ class IndexController extends Controller
         if ($request->isPost()) {
             if ($form->isValid()) {
                 $model = new FeedbackModel();
+                $datetime = new DateTime();
+
                 $model->save(array(
-                    // TODO + DateTime
+                    'username' => $form->username,
+                    'email' => $form->email,
+                    'message' => $form->message,
+                    'created' => $datetime->format('Y-m-d H:i:s')
                 ));
 
-                Router::redirect('/index.php?route=index/contact&flash_msg=valid');
+                Router::redirect('/index.php?route=index/contact&flash_msg=Message sent');
             }
 
             $msg = 'Invalid';
